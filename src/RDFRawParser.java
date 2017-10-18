@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -48,7 +49,7 @@ public final class RDFRawParser {
 	public static void main(String args[]) throws FileNotFoundException {
 
 		Reader reader = new FileReader(
-				".\\datas\\University0_0.owl");
+				"." + File.separator +"datas" + File.separator + "University0_0.owl");
 
 		org.openrdf.rio.RDFParser rdfParser = Rio
 				.createParser(RDFFormat.RDFXML);
@@ -64,8 +65,8 @@ public final class RDFRawParser {
 			reader.close();
 		} catch (IOException e) {
 		}
-		System.out.println(SPOmapPub);
-		//System.out.println(getsortedMap());
+		//System.out.println(SPOmapPub);
+		System.out.println(getsortedMap());
 
 		
 	}
