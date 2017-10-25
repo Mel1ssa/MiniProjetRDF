@@ -5,6 +5,6 @@ public class Triplet {
 		
 		
 		public String toString(){
-			return "[" + predicate + " , " + subject + " , " + object + "]";
+			return "[" + subject + " , " + predicate + " , " + object + "]";
 		}
 	}

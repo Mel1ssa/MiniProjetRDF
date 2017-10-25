@@ -33,8 +33,9 @@ public final class RDFRawParser {
 
 		org.openrdf.rio.RDFParser rdfParser = Rio.createParser(RDFFormat.RDFXML);
 		rdfParser.setRDFHandler(new RDFListener());
-
+		Long start = null;
 		try {
+			start = System.currentTimeMillis();
 			rdfParser.parse(reader, "");
 		} catch (Exception e) {
 
@@ -47,7 +48,8 @@ public final class RDFRawParser {
 		
 		Dictionnaire dictionnaire = Dictionnaire.getInstance();
 		System.out.println(dictionnaire.toString());
-
+		
+		System.out.println("Import time : " + (System.currentTimeMillis() - start));
 	}
 
 }

@@ -44,6 +44,8 @@ public class Dictionnaire {
 		return wordIndex;
 	}
 
+	
+	
 	public void add(String subject, String predicate, String object) {
 		Triplet triplet = new Triplet();
 		triplet.subject = add(subject);
@@ -54,8 +56,12 @@ public class Dictionnaire {
 	}
 	
 	public String toString(){
-		String str = "{\n";
-		for(int i = 0; i<tripletList.size(); i++){
+		String str1 = "Dictionnaire :\n{";
+		for(int i = 0; i<100; i++){
+			str1 += i + " : " + indexList.get(i) + "\n";
+		}
+		String str = str1 + "}\nListe de triplet :\n{\n";
+		for(int i = 0; i<100; i++){
 			str += "   {"+ i + " : " + tripletList.get(i).toString() + "\n";
 		}
 		str += "}\nNombre de mots unique dans le dictionnaire : " + indexList.size();
