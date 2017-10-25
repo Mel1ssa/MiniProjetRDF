@@ -1,1 +1,3 @@
 # MiniProjetRDF
+
+Un super projet :)
