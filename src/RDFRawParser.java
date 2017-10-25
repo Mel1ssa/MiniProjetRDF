@@ -27,6 +27,7 @@ public final class RDFRawParser {
 		}
 	};
 
+	//main !
 	public static void main(String args[]) throws FileNotFoundException {
 
 		Reader reader = new FileReader("." + File.separator + "datas" + File.separator + "University0_0.owl");
