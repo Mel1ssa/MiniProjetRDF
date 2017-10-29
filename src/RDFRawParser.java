@@ -18,6 +18,7 @@ import org.openrdf.rio.helpers.RDFHandlerBase;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QDecoderStream;
 
 import query.Query;
+import query.QueryFactory;
 
 public final class RDFRawParser {
 
@@ -84,8 +85,8 @@ public final class RDFRawParser {
 			  + " WHERE {?x rdf:type ub:Subj18Student .  ?x rdf:type ub:GraduateStudent . ?x rdf:type ub:ResearchAssistant }";
 		}
 		//System.out.println(q);
-		Query query = new Query(q);
-		
+		Query query = QueryFactory.create(q);
+			
 	}
 
 }
