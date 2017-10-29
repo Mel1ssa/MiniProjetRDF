@@ -28,13 +28,12 @@ public class QueryFactory {
 		
 		variables = extractSelectVar(selectVariables);
 		
-			
 		Query queryObject = new Query();
 		conditions = extractConditions(variables ,conditionString);
 				
 		System.out.println("Liste des prefixes :\n" + prefixes);
 		System.out.println("\nListe des variables :\n" + variables);
-		//System.out.println("\nListe des conditions :\n" + conditions);
+		System.out.println("\nListe des conditions :\n" + conditions);
 	
 		return queryObject;
 		
@@ -94,18 +93,42 @@ public class QueryFactory {
 				return null;
 			}
 			
+			Value sujet = extractValue(variables, elements[0]);
+			Value predicat = extractValue(variables, elements[1]);
+			Value objet = extractValue(variables, elements[2]);
 			
+						
 			
-			//Condition conditionObject = new Condition(elements[0].trim(), elements[1].trim(), elements[2].trim());
-			//conditions.add(conditionObject);
+			Condition conditionObject = new Condition( (Variable) sujet, (Uri) predicat, objet);
+			conditions.add(conditionObject);
 		}
 		
 		return conditions;
 	}
 	
-	private Value detectValue(String str) {
+	private static Value extractValue(ArrayList<Variable> variables, String str) {
+		String strTrim = str.trim();
 		
+		switch(strTrim.charAt(0)) {
+		case '"':
+			// Cas Constante
+			String returnStr = str.substring(1, str.length() - 1); 
+			return new Constant(returnStr);
+		case '?':
+			// Cas variable
+			for(Variable var : variables) {
+				if(var.getName().equals(str)) {
+					return var;
+				}
+			}
+			Variable  result = new Variable(str, false);
+			variables.add(result);
+			return result;
+		default:
+			// Cas Uri ?
+			String[] stringTab = str.split(":", 2);
+			return new Uri(stringTab[0].trim(), stringTab[1].trim());
+		}
 		
-		return new Constant(str);
 	}
 }

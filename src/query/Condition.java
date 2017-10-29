@@ -1,13 +1,13 @@
 package query;
 
-import query.condition_element.Value;
+import query.condition_element.*;
 
 public class Condition {
-	Value subjet;
-	Value predicate;
+	Variable subjet;
+	Uri predicate;
 	Value object;
 	
-	public Condition(Value s, Value p, Value o) {
+	public Condition(Variable s, Uri p, Value o) {
 		this.subjet = s;
 		this.predicate = p;
 		this.object = o;

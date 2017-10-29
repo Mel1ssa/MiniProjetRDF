@@ -60,7 +60,7 @@ public final class RDFRawParser {
 		/**
 		 * Creation d'une requete
 		 */
-		int choix = 0;
+		int choix = 3;
 		String q = null;
 		switch(choix){
 		case 0:
@@ -83,7 +83,12 @@ public final class RDFRawParser {
 		case 2:
 			q = "SELECT ?x"
 			  + " WHERE {?x rdf:type ub:Subj18Student .  ?x rdf:type ub:GraduateStudent . ?x rdf:type ub:ResearchAssistant }";
+			break;
+		case 3:
+			q = "SELECT ?x"
+			  + "WHERE {?x rdf:type ?y . ?y rdf:isAge \"18\" }";
 		}
+		
 		//System.out.println(q);
 		Query query = QueryFactory.create(q);
 			

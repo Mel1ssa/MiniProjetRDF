@@ -1,11 +1,16 @@
 package query.condition_element;
 
-public class Uri extends Value{
+public class Uri extends Variable{
 	String prefix;
 	
 	public Uri(String pref, String n) {
-		super(n);
+		super(n,false);
 		this.prefix = pref;
+	}
+	
+	@Override
+	public String toString() {
+		return this.prefix + ":" + this.name; 
 	}
 	
 	

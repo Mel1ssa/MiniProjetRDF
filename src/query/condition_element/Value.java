@@ -6,4 +6,13 @@ public abstract class Value {
 	public Value(String n) {
 		this.name = n;
 	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
+	}
 }
