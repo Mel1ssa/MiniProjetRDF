@@ -7,4 +7,27 @@ public class Triplet {
 		public String toString(){
 			return "[" + subject + " , " + predicate + " , " + object + "]";
 		}
+		
+		public String toStringPOS(){
+			return "[" + predicate + " , " + object + " , " + subject + "]";
+		}
+		
+		public String toStringOPS(){
+			return "[" + object + " , " + predicate + " , " + subject + "]";
+		}
+
+
+		public int getPredicate() {
+			return predicate;
+		}
+
+
+		public int getSubject() {
+			return subject;
+		}
+
+
+		public int getObject() {
+			return object;
+		}
 	}

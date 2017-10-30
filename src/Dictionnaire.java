@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -55,16 +59,27 @@ public class Dictionnaire {
 		tripletList.add(triplet);
 	}
 	
+	public ArrayList<Triplet> getTripletList() {
+		return tripletList;
+	}
+
+	
+	
 	public String toString(){
-		String str1 = "Dictionnaire :\n{";
-		for(int i = 0; i<100; i++){
-			str1 += i + " : " + indexList.get(i) + "\n";
-		}
-		String str = str1 + "}\nListe de triplet :\n{\n";
-		for(int i = 0; i<100; i++){
-			str += "   {"+ i + " : " + tripletList.get(i).toString() + "\n";
-		}
-		str += "}\nNombre de mots unique dans le dictionnaire : " + indexList.size();
+		String str ="";
+//				
+//		String strD = "Dictionnaire :\n{";
+//		for(int i = 0; i<indexList.size(); i++){
+//			strD += i + " : " + indexList.get(i) + "\n";
+//		}
+//		 str = strD + "}\nListe de triplet :\n{\n";
+//		for(int i = 0; i<tripletList.size(); i++){
+//			str += "   {"+ i + " : " + tripletList.get(i).toStringPOS() + "\n";
+//		}
+//		
+//		str += "}\nNombre de mots unique dans le dictionnaire : " + indexList.size();
+		
 		return str;
 	}
+		
 }
