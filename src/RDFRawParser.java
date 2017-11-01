@@ -60,7 +60,7 @@ public final class RDFRawParser {
 		/**
 		 * Creation d'une requete
 		 */
-		int choix = 3;
+		int choix = 0;
 		String q = null;
 		switch(choix){
 		case 0:
@@ -91,6 +91,7 @@ public final class RDFRawParser {
 		
 		//System.out.println(q);
 		Query query = QueryFactory.create(q);
+		System.out.println(query);
 			
 	}
 

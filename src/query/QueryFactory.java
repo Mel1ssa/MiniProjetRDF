@@ -8,7 +8,6 @@ import query.condition_element.*;
 public class QueryFactory {
 
 	public static Query create(String queryString) {
-		System.out.println("\n------------ Parsing de la requête -----------------");
 		HashMap<String, String> prefixes = new HashMap<>();
 		ArrayList<Variable> variables = new ArrayList<>();
 		ArrayList<Condition> conditions = new ArrayList<>();
@@ -27,14 +26,10 @@ public class QueryFactory {
 		String conditionString = whereSplit[1];
 		
 		variables = extractSelectVar(selectVariables);
+		conditions = extractConditions(prefixes, variables ,conditionString);
 		
-		Query queryObject = new Query();
-		conditions = extractConditions(variables ,conditionString);
-				
-		System.out.println("Liste des prefixes :\n" + prefixes);
-		System.out.println("\nListe des variables :\n" + variables);
-		System.out.println("\nListe des conditions :\n" + conditions);
-	
+		Query queryObject = new Query(prefixes, variables, conditions);
+		
 		return queryObject;
 		
 	}
@@ -78,7 +73,7 @@ public class QueryFactory {
 		return variables;
 	}
 	
-	private static ArrayList<Condition> extractConditions(ArrayList<Variable> variables, String conditionString){
+	private static ArrayList<Condition> extractConditions(HashMap<String, String> prefixes, ArrayList<Variable> variables, String conditionString){
 		
 		ArrayList<Condition> conditions = new ArrayList<>();
 		conditionString = conditionString.replace("{", "");
@@ -93,9 +88,9 @@ public class QueryFactory {
 				return null;
 			}
 			
-			Value sujet = extractValue(variables, elements[0]);
-			Value predicat = extractValue(variables, elements[1]);
-			Value objet = extractValue(variables, elements[2]);
+			Value sujet = extractValue(prefixes, variables, elements[0]);
+			Value predicat = extractValue(prefixes, variables, elements[1]);
+			Value objet = extractValue(prefixes, variables, elements[2]);
 			
 						
 			
@@ -106,14 +101,14 @@ public class QueryFactory {
 		return conditions;
 	}
 	
-	private static Value extractValue(ArrayList<Variable> variables, String str) {
+	private static Value extractValue(HashMap<String,String> prefixes, ArrayList<Variable> variables, String str) {
 		String strTrim = str.trim();
 		
 		switch(strTrim.charAt(0)) {
 		case '"':
 			// Cas Constante
-			String returnStr = str.substring(1, str.length() - 1); 
-			return new Constant(returnStr);
+			//String returnStr = str.substring(1, str.length() - 1); 
+			return new Constant(str);
 		case '?':
 			// Cas variable
 			for(Variable var : variables) {
@@ -127,7 +122,16 @@ public class QueryFactory {
 		default:
 			// Cas Uri ?
 			String[] stringTab = str.split(":", 2);
-			return new Uri(stringTab[0].trim(), stringTab[1].trim());
+			String prefixeUri = stringTab[0].trim();
+			String prefixe = null;
+			if(prefixes.containsKey(prefixeUri)) {
+				prefixe = prefixes.get(prefixeUri);
+			}
+			else {
+				System.err.println("Erreur : le préfixe n'existe pas : " + prefixeUri);
+				return null;
+			}
+			return new Uri(prefixe, stringTab[1].trim());
 		}
 		
 	}
