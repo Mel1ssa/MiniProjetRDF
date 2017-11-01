@@ -1,6 +1,8 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
@@ -28,7 +30,7 @@ public final class RDFRawParser {
 	};
 
 	//main !
-	public static void main(String args[]) throws FileNotFoundException {
+	public static void main(String args[]) throws IOException {
 
 		Reader reader = new FileReader("." + File.separator + "datas" + File.separator + "University0_0.owl");
 
@@ -48,10 +50,33 @@ public final class RDFRawParser {
 		}
 		
 		Dictionnaire dictionnaire = Dictionnaire.getInstance();
-		System.out.println(dictionnaire.toString());
+		//System.out.println(dictionnaire.toString());
 		
 		HashMap<Integer,HashMap<Integer,HashSet<Integer>>> IndexPOS = getIndex(dictionnaire.getTripletList(),"POS");
-		System.out.println(IndexPOS);
+		//System.out.println(IndexPOS);
+		
+		/**
+		 * Le code commenté en dessous permet l'affichage du dictionnaire et de l'index dans un fichier log.txt
+		 */
+		/*
+		BufferedWriter out = null;
+		try  
+		{
+		    FileWriter fstream = new FileWriter("log.txt", false); //true tells to append data.
+		    out = new BufferedWriter(fstream);
+		    out.write(dictionnaire.toString() + "\n\n\n" + IndexPOS.toString());
+		}
+		catch (IOException e)
+		{
+		    System.err.println("Error: " + e.getMessage());
+		}
+		finally
+		{
+		    if(out != null) {
+		        out.close();
+		    }
+		}
+		*/
 		
 		System.out.println("Import time : " + (System.currentTimeMillis() - start));
 	}
@@ -85,6 +110,7 @@ public final class RDFRawParser {
 				for(Map.Entry<Integer,HashSet<Integer>> val : indexPOS.get(T1).entrySet()) {
 					if(val.getKey().equals(T2)) {
 						val.getValue().add(t.getSubject());
+						trv = true;
 						break;
 					}
 				}

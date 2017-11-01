@@ -210,3 +210,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/java,eclipse,intellij+iml,windows,linux,osx
+
+# Fichier de log du programme
+log.txt

@@ -67,17 +67,17 @@ public class Dictionnaire {
 	
 	public String toString(){
 		String str ="";
-//				
-//		String strD = "Dictionnaire :\n{";
-//		for(int i = 0; i<indexList.size(); i++){
-//			strD += i + " : " + indexList.get(i) + "\n";
-//		}
-//		 str = strD + "}\nListe de triplet :\n{\n";
-//		for(int i = 0; i<tripletList.size(); i++){
-//			str += "   {"+ i + " : " + tripletList.get(i).toStringPOS() + "\n";
-//		}
-//		
-//		str += "}\nNombre de mots unique dans le dictionnaire : " + indexList.size();
+				
+		String strD = "Dictionnaire :\n{";
+		for(int i = 0; i<indexList.size(); i++){
+			strD += i + " : " + indexList.get(i) + "\n";
+		}
+		 str = strD + "}\nListe de triplet :\n{\n";
+		for(int i = 0; i<tripletList.size(); i++){
+			str += "   {"+ i + " : " + tripletList.get(i).toStringPOS() + "\n";
+		}
+		
+		str += "}\nNombre de mots unique dans le dictionnaire : " + indexList.size();
 		
 		return str;
 	}
