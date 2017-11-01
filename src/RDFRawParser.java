@@ -84,11 +84,11 @@ public final class RDFRawParser {
 		*/
 		
 		System.out.println("Import time : " + (System.currentTimeMillis() - start));
-		
+		Long parsingTime = System.currentTimeMillis();;
 		/**
 		 * Creation d'une requete
 		 */
-		int choix = 0;
+		int choix = 1;
 		String q = null;
 		switch(choix){
 		case 0:
@@ -107,18 +107,11 @@ public final class RDFRawParser {
 					 + " PREFIX ub: <http://swat.cse.lehigh.edu/onto/univ-bench.owl#>"
 					 + " select ?x"
 					 + " WHERE {?x rdf:type ub:Subj18Student .  ?x rdf:type ub:GraduateStudent . ?x rdf:type ub:TeachingAssistant }";
-			break;
-		case 2:
-			q = "SELECT ?x"
-			  + " WHERE {?x rdf:type ub:Subj18Student .  ?x rdf:type ub:GraduateStudent . ?x rdf:type ub:ResearchAssistant }";
-			break;
-		case 3:
-			q = "SELECT ?x"
-			  + "WHERE {?x rdf:type ?y . ?y rdf:isAge \"18\" }";
 		}
 		
 		//System.out.println(q);
 		Query query = QueryFactory.create(q);
+		System.out.println("parsing time : " + (System.currentTimeMillis() - parsingTime));
 		System.out.println(query);
 			
 	}
