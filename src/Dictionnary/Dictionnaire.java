@@ -1,3 +1,4 @@
+package Dictionnary;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -30,6 +31,9 @@ public class Dictionnaire {
 	}
 
 	public int get(String word) {
+		Integer mot = wordList.get(word);
+		if(mot == null)
+			return -1;
 		return wordList.get(word);
 	}
 

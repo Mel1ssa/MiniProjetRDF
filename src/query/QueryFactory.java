@@ -107,8 +107,8 @@ public class QueryFactory {
 		switch(strTrim.charAt(0)) {
 		case '"':
 			// Cas Constante
-			//String returnStr = str.substring(1, str.length() - 1); 
-			return new Constant(str);
+			String returnStr = str.substring(1, str.length() - 1); 
+			return new Constant(returnStr);
 		case '?':
 			// Cas variable
 			for(Variable var : variables) {

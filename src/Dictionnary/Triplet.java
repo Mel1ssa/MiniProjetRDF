@@ -1,3 +1,4 @@
+package Dictionnary;
 public class Triplet {
 		public int predicate;
 		public int subject;

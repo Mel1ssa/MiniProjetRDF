@@ -19,8 +19,13 @@ import org.openrdf.rio.helpers.RDFHandlerBase;
 
 import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QDecoderStream;
 
+import Dictionnary.Dictionnaire;
+import Dictionnary.Triplet;
 import query.Query;
+import query.QueryExecution;
+import query.QueryExecutionFactory;
 import query.QueryFactory;
+import query.ResultSet;
 
 public final class RDFRawParser {
 
@@ -33,6 +38,51 @@ public final class RDFRawParser {
 
 		}
 	};
+	
+	
+	public static HashMap<Integer,HashMap<Integer,HashSet<Integer>>> getIndex(ArrayList<Triplet> triplets, String type){
+		HashMap<Integer,HashMap<Integer,HashSet<Integer>>> indexPOS = new HashMap<Integer,HashMap<Integer,HashSet<Integer>>>();
+		boolean trv=false;
+		int T1,T2;
+		
+		for(Triplet t : triplets) {			
+			if(type.equals("POS")) {
+				T1=t.getPredicate();
+				T2=t.getObject();				
+			}
+			else {
+				T1=t.getObject();
+				T2=t.getPredicate();
+			}
+			
+			HashMap<Integer,HashSet<Integer>>  indexOS = new HashMap<Integer,HashSet<Integer>>();
+			HashSet<Integer> indexSub= new HashSet<Integer>(); ;
+			
+			if(!indexPOS.containsKey(T1)) { 	// si l'index ne contient pas le premier élement (predicat/objet) alors on lui ajoute 		
+				indexSub.add(t.getSubject());
+				indexOS.put(T2, indexSub);
+				indexPOS.put(T1, indexOS);
+				
+			}
+			else { 
+				for(Map.Entry<Integer,HashSet<Integer>> val : indexPOS.get(T1).entrySet()) {
+					if(val.getKey().equals(T2)) {
+						val.getValue().add(t.getSubject());
+						trv = true;
+						break;
+					}
+				}
+				if(!trv) {
+					indexSub.add(t.getSubject());
+					indexPOS.get(T1).put(T2, indexSub);
+					
+				}
+				trv=false;
+			}
+				
+		}	
+		return indexPOS;
+	}
 
 	//main !
 	public static void main(String args[]) throws IOException {
@@ -84,82 +134,39 @@ public final class RDFRawParser {
 		*/
 		
 		System.out.println("Import time : " + (System.currentTimeMillis() - start));
-		Long parsingTime = System.currentTimeMillis();;
 		/**
 		 * Creation d'une requete
 		 */
-		int choix = 1;
-		String q = null;
-		switch(choix){
-		case 0:
-			q = " PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
+		String q = " PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 					 + " PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
 					 + " PREFIX owl: <http://www.w3.org/2002/07/owl#>"
 					 + " PREFIX ub: <http://swat.cse.lehigh.edu/onto/univ-bench.owl#>"
 					 + " SELECT ?x"
 					 + " WHERE {?x rdf:type ub:Subj18Student .  ?x rdf:type ub:GraduateStudent . ?x rdf:type ub:ResearchAssistant }";
-			break;
-		case 1:
-			q = " PREFIX rdf:\n" 
-					 + " <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" 
-					 + " PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-					 + " PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-					 + " PREFIX ub: <http://swat.cse.lehigh.edu/onto/univ-bench.owl#>"
-					 + " select ?x"
-					 + " WHERE {?x rdf:type ub:Subj18Student .  ?x rdf:type ub:GraduateStudent . ?x rdf:type ub:TeachingAssistant }";
-		}
 		
 		//System.out.println(q);
+		start = System.currentTimeMillis();
 		Query query = QueryFactory.create(q);
-		System.out.println("parsing time : " + (System.currentTimeMillis() - parsingTime));
+		System.out.println("parsing time : " + (System.currentTimeMillis() - start));
 		System.out.println(query);
-			
-	}
-
-	
-	public static HashMap<Integer,HashMap<Integer,HashSet<Integer>>> getIndex(ArrayList<Triplet> triplets, String type){
-		HashMap<Integer,HashMap<Integer,HashSet<Integer>>> indexPOS = new HashMap<Integer,HashMap<Integer,HashSet<Integer>>>();
-		boolean trv=false;
-		int T1,T2;
 		
-		for(Triplet t : triplets) {			
-			if(type.equals("POS")) {
-				T1=t.getPredicate();
-				T2=t.getObject();				
-			}
-			else {
-				T1=t.getObject();
-				T2=t.getPredicate();
-			}
-			
-			HashMap<Integer,HashSet<Integer>>  indexOS = new HashMap<Integer,HashSet<Integer>>();
-			HashSet<Integer> indexSub= new HashSet<Integer>(); ;
-			
-			if(!indexPOS.containsKey(T1)) { 	// si l'index ne contient pas le premier élement (predicat/objet) alors on lui ajoute 		
-				indexSub.add(t.getSubject());
-				indexOS.put(T2, indexSub);
-				indexPOS.put(T1, indexOS);
-				
-			}
-			else { 
-				for(Map.Entry<Integer,HashSet<Integer>> val : indexPOS.get(T1).entrySet()) {
-					if(val.getKey().equals(T2)) {
-						val.getValue().add(t.getSubject());
-						trv = true;
-						break;
-					}
-				}
-				if(!trv) {
-					indexSub.add(t.getSubject());
-					indexPOS.get(T1).put(T2, indexSub);
-					
-				}
-				trv=false;
-			}
-				
-		}	
-		return indexPOS;
-	}
-	
+		start = System.currentTimeMillis();
 
+		QueryExecution qexec = QueryExecutionFactory.create(query, dictionnaire);
+
+		System.out.println("Query pre-processing time : " + (System.currentTimeMillis() - start));
+		
+		/**
+		 * Partie exécution (Pas encore implémenté)
+		 */
+		
+		/*
+		start = System.currentTimeMillis();
+		ResultSet rs = qexec.execSelect();
+
+		System.out.println(rs);
+		
+		System.out.println("Query + Display time : " + (System.currentTimeMillis() - start));
+		*/
+	}
 }

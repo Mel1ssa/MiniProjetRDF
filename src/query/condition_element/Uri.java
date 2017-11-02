@@ -9,6 +9,11 @@ public class Uri extends Variable{
 	}
 	
 	@Override
+	public String getQueryName() {
+		return this.prefix + this.name;
+	}
+	
+	@Override
 	public String toString() {
 		return this.prefix + this.name; 
 	}

@@ -11,6 +11,10 @@ public abstract class Value {
 		return this.name;
 	}
 	
+	public String getQueryName() {
+		return this.name;
+	}
+	
 	@Override
 	public String toString() {
 		return this.name;
