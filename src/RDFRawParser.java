@@ -39,7 +39,7 @@ public final class RDFRawParser {
 		}
 	};
 	
-	
+	/*
 	public static HashMap<Integer,HashMap<Integer,HashSet<Integer>>> getIndex(ArrayList<Triplet> triplets, String type){
 		HashMap<Integer,HashMap<Integer,HashSet<Integer>>> indexPOS = new HashMap<Integer,HashMap<Integer,HashSet<Integer>>>();
 		boolean trv=false;
@@ -83,11 +83,21 @@ public final class RDFRawParser {
 		}	
 		return indexPOS;
 	}
+	*/
 
 	//main !
 	public static void main(String args[]) throws IOException {
-
-		Reader reader = new FileReader("." + File.separator + "datas" + File.separator + "University0_0.owl");
+		/**
+		 * Check si un nom de fichié a été ajouté en argument
+		 */
+		String fichierStr;
+		if(args.length != 0 ) {
+			fichierStr = args[0];
+		}
+		else {
+			fichierStr = "." + File.separator + "datas" + File.separator + "University0_0.owl";
+		}
+		Reader reader = new FileReader(fichierStr);
 
 		org.openrdf.rio.RDFParser rdfParser = Rio.createParser(RDFFormat.RDFXML);
 		rdfParser.setRDFHandler(new RDFListener());
@@ -107,7 +117,7 @@ public final class RDFRawParser {
 		Dictionnaire dictionnaire = Dictionnaire.getInstance();
 		//System.out.println(dictionnaire.toString());
 		
-		HashMap<Integer,HashMap<Integer,HashSet<Integer>>> IndexPOS = getIndex(dictionnaire.getTripletList(),"POS");
+		//HashMap<Integer,HashMap<Integer,HashSet<Integer>>> IndexPOS = getIndex(dictionnaire.getTripletList(),"POS");
 		//System.out.println(IndexPOS);
 		
 		/**
@@ -119,7 +129,7 @@ public final class RDFRawParser {
 		{
 		    FileWriter fstream = new FileWriter("log.txt", false); //true tells to append data.
 		    out = new BufferedWriter(fstream);
-		    out.write(dictionnaire.toString() + "\n\n\n" + IndexPOS.toString());
+		    out.write(dictionnaire.toString() + "\n\n\n" + dictionnaire.getIndexPOS().toString());
 		}
 		catch (IOException e)
 		{
