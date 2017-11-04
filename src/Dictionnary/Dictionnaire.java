@@ -130,6 +130,10 @@ public class Dictionnaire {
 		return indexPOS;
 	}
 
+	public HashMap<Integer, HashMap<Integer, HashSet<Integer>>> getIndexOPS() {
+		return indexOPS;
+	}
+
 	public String toString(){
 		String str ="";
 				

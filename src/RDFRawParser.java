@@ -158,7 +158,6 @@ public final class RDFRawParser {
 		start = System.currentTimeMillis();
 		Query query = QueryFactory.create(q);
 		System.out.println("parsing time : " + (System.currentTimeMillis() - start));
-		System.out.println(query);
 		
 		start = System.currentTimeMillis();
 
@@ -167,16 +166,16 @@ public final class RDFRawParser {
 		System.out.println("Query pre-processing time : " + (System.currentTimeMillis() - start));
 		
 		/**
-		 * Partie exécution (Pas encore implémenté)
+		 * Partie exécution
 		 */
 		
-		/*
+		
 		start = System.currentTimeMillis();
 		ResultSet rs = qexec.execSelect();
 
 		System.out.println(rs);
 		
 		System.out.println("Query + Display time : " + (System.currentTimeMillis() - start));
-		*/
+		
 	}
 }

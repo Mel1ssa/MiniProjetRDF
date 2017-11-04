@@ -1,6 +1,10 @@
 package query;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 
 import Dictionnary.Dictionnaire;
 
@@ -16,8 +20,7 @@ public class QueryExecutionFactory {
 		/**
 		 * Premièrement, il faut associer les ids aux éléments de la requête
 		 */
-		
-		int[] tabCondition = new int[2];
+		HashMap<Integer,HashMap<Integer,HashSet<Integer>>> index = dico.getIndexOPS();
 		
 		ArrayList<ConditionInteger> conditionsInt = new ArrayList<>();
 		
@@ -29,14 +32,24 @@ public class QueryExecutionFactory {
 			int predicateInt = dico.get(predicate);
 			int objectInt = dico.get(object);
 			
-			ConditionInteger condition = new ConditionInteger(c, predicateInt, objectInt);
+			int size = index.get(objectInt).get(predicateInt).size();
+			
+			ConditionInteger condition = new ConditionInteger(c, predicateInt, objectInt, size);
 			conditionsInt.add(condition);
 		}
 		
-		System.out.println(conditionsInt);
-		
+		Collections.sort(conditionsInt, new Comparator<ConditionInteger>() {
+	        @Override
+	        public int compare(ConditionInteger condition1, ConditionInteger condition2)
+	        {
+
+	            return  Integer.compare(condition1.sizeRequest, condition2.sizeRequest);
+	        }
+	    });
+				
 		QueryExecution queryExecutionObject = new QueryExecution();
 		queryExecutionObject.setConditionsInt(conditionsInt);
+		queryExecutionObject.setDictionnaire(dico);
 		
 		return queryExecutionObject;
 	}
