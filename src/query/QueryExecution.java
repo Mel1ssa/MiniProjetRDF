@@ -47,22 +47,26 @@ public class QueryExecution {
 			Iterator<Integer> it2 = treeSetResultsBis.iterator();
 			Integer iterator1Int = it1.next();
 			Integer iterator2Int = it2.next();
-			System.out.println(treeSetResults + "\nvs\n" + treeSetResultsBis);
-			while(it1.hasNext() && it2.hasNext()) {
+			while(true) {
 				int compare = iterator1Int.compareTo(iterator2Int);
-				System.out.println(iterator1Int + " vs " + iterator2Int);
-				//Scanner s = new Scanner(System.in);
-				//s.nextLine();
-				if(compare > 0) {
+				if(compare > 0 && it2.hasNext()) {
 					iterator2Int = it2.next();
 				}
-				else if(compare < 0) {
+				else if(compare < 0 && it1.hasNext()) {
 					iterator1Int = it1.next();
 				}
 				else if(compare == 0) {
 					actualResult.add(iterator1Int);
-					iterator1Int = it1.next();
-					iterator2Int = it2.next();
+					if(it1.hasNext() && it2.hasNext()) {
+						iterator1Int = it1.next();
+						iterator2Int = it2.next();
+					}
+					else {
+						break;
+					}
+				}
+				else {
+					break;
 				}
 			}
 			treeSetResults = actualResult;
