@@ -80,7 +80,7 @@ public class QueryFactory {
 		conditionString = conditionString.replace("{", "");
 		conditionString = conditionString.replace("}", "");
 		
-		String[] tabConditions = conditionString.split(" \\. ");
+		String[] tabConditions = conditionString.split(" \\.( )*");
 
 		for(String condition : tabConditions) {
 			
