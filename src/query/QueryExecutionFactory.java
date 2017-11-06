@@ -28,20 +28,16 @@ public class QueryExecutionFactory {
 		for(Condition c : conditions) {
 			String predicate = c.getPredicate().getQueryName();
 			String object = c.getObject().getQueryName();
-			int predicateInt = dico.get(predicate);
-			int objectInt = dico.get(object);
-			if(predicateInt==-1) {
-				System.err.println("Le prédicat : " + predicate + " n'existe pas dans l'index");
-				System.exit(0);
-			}
-			if(objectInt==-1) {
-				System.err.println("L'objet : " + object + " n'existe pas dans l'index");
-				System.exit(0);
-			}
 			
+			int predicateInt=0;
+			int objectInt=0;
 			int size = 0;
-			if(index.get(objectInt).containsKey(predicateInt)){
+			try{
+				predicateInt = dico.get(predicate);
+				objectInt = dico.get(object);
 				size = index.get(objectInt).get(predicateInt).size();
+			}catch(Exception e) {
+				
 			}
 			ConditionInteger condition = new ConditionInteger(c, predicateInt, objectInt, size);
 			conditionsInt.add(condition);
