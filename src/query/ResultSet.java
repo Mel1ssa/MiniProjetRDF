@@ -22,6 +22,8 @@ public class ResultSet {
 	}
 	
 	public void toCSV(String filename) throws IOException {
+		if(resultats.size()==0)
+			return;
 		File file = new File(filename);
 		file.getParentFile().mkdirs();
 		FileWriter writer = new FileWriter(filename);
