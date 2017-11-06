@@ -60,7 +60,7 @@ public final class RDFRawParser {
 		else {
 			System.out.println("Pour utiliser un autre fichier, utilisez la commande\n\t "
 					+ "\"java -jar RDFProject.jar repertoire/fichier.owl\"  repertoire/requete.txt ( l'extension n'importe pas)");
-			fichierStr = "." + File.separator + "datas" + File.separator + "500K.owl";
+			fichierStr = "." + File.separator + "datas" + File.separator + "100K.owl";
 			fichierQuery="." + File.separator + "queries" + File.separator + "Q_1_eligibleregion.queryset";
 		}
 		
@@ -121,7 +121,7 @@ public final class RDFRawParser {
 		
 		Pattern pattern = Pattern.compile("(SELECT.*?})",Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);
 		Matcher matcher = pattern.matcher(text);
-		int cpt=1;
+		int cpt=2; // ne compile pas le 1er select :/
 		Long startLoop = System.currentTimeMillis();
 		
 		if(!matcher.find()) {
@@ -130,7 +130,6 @@ public final class RDFRawParser {
 		}
 		while (matcher.find()) {
 			start = System.currentTimeMillis();
-							
 			Query query = QueryFactory.create(matcher.group(1));
 			time=System.currentTimeMillis() - start;
 			System.out.println   ("Query "+cpt+" -Parsing time : " + time);
