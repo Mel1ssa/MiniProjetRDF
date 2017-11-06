@@ -28,10 +28,16 @@ public class QueryExecutionFactory {
 		for(Condition c : conditions) {
 			String predicate = c.getPredicate().getQueryName();
 			String object = c.getObject().getQueryName();
-			
 			int predicateInt = dico.get(predicate);
 			int objectInt = dico.get(object);
-			
+			if(predicateInt==-1) {
+				System.err.println("Le prédicat : "+predicate+" n'xiste pas dans l'index");
+				System.exit(0);
+			}
+			if(objectInt==-1) {
+				System.err.println("Le prédicat : "+object+" n'xiste pas dans l'index");
+				System.exit(0);
+			}
 			int size = index.get(objectInt).get(predicateInt).size();
 			
 			ConditionInteger condition = new ConditionInteger(c, predicateInt, objectInt, size);
