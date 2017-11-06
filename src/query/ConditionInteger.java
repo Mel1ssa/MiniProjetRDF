@@ -6,6 +6,7 @@ public class ConditionInteger {
 	int object;
 	int sizeRequest;
 	
+
 	public ConditionInteger(Condition origine, int predicate, int object, int size){
 		this.predicate = predicate;
 		this.object = object;
@@ -27,6 +28,10 @@ public class ConditionInteger {
 
 	public void setObject(int object) {
 		this.object = object;
+	}
+	
+	public int getSizeRequest() {
+		return sizeRequest;
 	}
 	
 	@Override

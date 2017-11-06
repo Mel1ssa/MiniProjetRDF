@@ -51,9 +51,9 @@ public final class RDFRawParser {
 		}
 		else {
 			System.out.println("Pour utiliser un autre fichier, utilisez la commande\n\t "
-					+ "\"java -jar RDFProject.jar repertoire/fichier.owl\"  repertoire/requete.txt ( l'extention n'importe pas)");
+					+ "\"java -jar RDFProject.jar repertoire/fichier.owl\"  repertoire/requete.txt ( l'extension n'importe pas)");
 			fichierStr = "." + File.separator + "datas" + File.separator + "500K.owl";
-			fichierQuery="." + File.separator + "queries" + File.separator + "Q1Test.queryset";
+			fichierQuery="." + File.separator + "queries" + File.separator + "Q_1_eligibleregion.queryset";
 		}
 		Reader reader = new FileReader(fichierStr);
 

@@ -25,6 +25,9 @@ public class QueryExecution {
 	public ResultSet execSelect() {
 		HashMap<Integer,HashMap<Integer,HashSet<Integer>>> index = dictionnaire.getIndexOPS();
 		ConditionInteger firstCondition = conditionsInt.get(0);
+		if(firstCondition.getSizeRequest() == 0){
+			return new ResultSet(new ArrayList<>());
+		}
 		HashSet<Integer> results = index.get(firstCondition.getObject()).get(firstCondition.getPredicate());
 		ConditionInteger secondCondition;
 		HashSet<Integer> resultsBis;
