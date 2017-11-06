@@ -1,11 +1,15 @@
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.openrdf.model.Statement;
 import org.openrdf.rio.RDFFormat;
@@ -34,12 +38,16 @@ public final class RDFRawParser {
 	
 	//main !
 	public static void main(String args[]) throws IOException {
+		Date d = new Date();
+		String dateStrDetail= d.getDate()+"-"+d.getMonth()+"-"+d.getYear()+"-"+d.getHours()+"."+d.getMinutes(); 
+		
 		/**
 		 * Check si un nom de fichié a été ajouté en argument
 		 */
-
+		
 		String fichierStr;
 		String fichierQuery;
+	
 		if(args.length == 2 ) {
 			fichierStr = args[0];
 			if(!fichierStr.contains(".owl")) {
@@ -55,6 +63,10 @@ public final class RDFRawParser {
 			fichierStr = "." + File.separator + "datas" + File.separator + "500K.owl";
 			fichierQuery="." + File.separator + "queries" + File.separator + "Q_1_eligibleregion.queryset";
 		}
+		
+		
+		ArrayList<String> ExecutionTimeList = new ArrayList<String>();
+		Long time;
 		Reader reader = new FileReader(fichierStr);
 
 		org.openrdf.rio.RDFParser rdfParser = Rio.createParser(RDFFormat.RDFXML);
@@ -96,9 +108,9 @@ public final class RDFRawParser {
 		    }
 		}
 		*/
-		
-		System.out.println("Import time : " + (System.currentTimeMillis() - start));
-		
+		time=System.currentTimeMillis() - start;
+		System.out.println("Import time : " + time);
+		ExecutionTimeList.add("Import time : " + time);
 		/*
 		 * Lecture des requetes
 		 */
@@ -117,38 +129,59 @@ public final class RDFRawParser {
 			System.exit(1);
 		}
 		while (matcher.find()) {
-			System.out.println("\nQuery "+cpt+" :");
 			start = System.currentTimeMillis();
-			
 							
 			Query query = QueryFactory.create(matcher.group(1));
-			System.out.println("parsing time : " + (System.currentTimeMillis() - start));
+			time=System.currentTimeMillis() - start;
+			System.out.println   ("Query "+cpt+" -Parsing time : " + time);
+			ExecutionTimeList.add("Query "+cpt+" -Parsing time : " + time);
 			
 			start = System.currentTimeMillis();
 
-			QueryExecution qexec = QueryExecutionFactory.create(query, dictionnaire);
-
-			System.out.println("Query pre-processing time : " + (System.currentTimeMillis() - start));
-		    
+			QueryExecution qexec = QueryExecutionFactory.create(query, dictionnaire);			
+			time=System.currentTimeMillis() - start;
+			System.out.println   ("Query "+cpt+" -Pre-processing time : " + time);
+			ExecutionTimeList.add("Query "+cpt+" -Pre-processing time : " + time);
+			
 			/**
 			 * Partie exécution
 			 */		
 			
 			start = System.currentTimeMillis();
-			ResultSet rs = qexec.execSelect();		
-			System.out.println("Query time : " + (System.currentTimeMillis() - start));
+			
+			ResultSet rs = qexec.execSelect();	
+			time=System.currentTimeMillis() - start;
+			System.out.println("Query "+cpt+" -Exec query time : " + time);
+			ExecutionTimeList.add("Query "+cpt+" -Exec query time : " + time);
 			
 			start = System.currentTimeMillis();
 			
-			String fileResultName="./results/"+startLoop+"/Query"+cpt+".csv";
+			String fileResultName="." + File.separator +"results"+ File.separator + dateStrDetail + File.separator +"Query" + cpt + ".csv";
 			rs.toCSV(fileResultName);
 			System.out.println("Résults on : "+fileResultName);
-			System.out.println("Writing on file time : " + (System.currentTimeMillis() - start));
+			time=System.currentTimeMillis() - start;
+			System.out.println   ("Query "+cpt+" -Writing on file time : " + time +"\n");
+			ExecutionTimeList.add("Query "+cpt+" -Writing on file time : " + time +"\n");
 			cpt++;
 		}
+		time = System.currentTimeMillis() - startLoop;
+		System.out.println("\n\nLoop time : " +time);
+		ExecutionTimeList.add("\n\nLoop time : " +time);
 		
-		System.out.println("\n\nLoop time : " + (System.currentTimeMillis() - startLoop));
+		String fichierExecTrace= "." + File.separator + "results" + File.separator + dateStrDetail + File.separator +"trace" + File.separator + dateStrDetail+".csv" ;
+		System.out.println("Les traces d'executions se trouvent dans le fichier : "+fichierExecTrace);
+		writetoCSV(ExecutionTimeList,fichierExecTrace);
+	}
+	
+	public static void writetoCSV(ArrayList<String> execList,String filename) throws IOException {
 		
+		File file = new File(filename);
+		file.getParentFile().mkdirs();
+		FileWriter writer = new FileWriter(filename);
+	    String collect = execList.stream().collect(Collectors.joining("\n"));
+
+	    writer.write(collect);
+	    writer.close();
 		
 		
 	}
