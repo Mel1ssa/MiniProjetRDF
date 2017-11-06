@@ -84,7 +84,8 @@ public class Dictionnaire {
 		
 		// Ici on s'occupe des index
 		//addIndex(indexPOS, triplet, predicateIndex, objectIndex);
-		addIndex(indexOPS, triplet, objectIndex, predicateIndex);
+		//addIndex(indexOPS, triplet, objectIndex, predicateIndex);
+		indexOPS.computeIfAbsent(triplet.getObject(), k->new HashMap<Integer, HashSet<Integer>>()).computeIfAbsent(triplet.getPredicate(), k->new HashSet<Integer>()).add(triplet.getSubject());
 	}
 	
 	public ArrayList<Triplet> getTripletList() {
