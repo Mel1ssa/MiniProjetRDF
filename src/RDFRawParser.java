@@ -1,26 +1,18 @@
-import java.io.BufferedWriter;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.openrdf.model.Statement;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.Rio;
 import org.openrdf.rio.helpers.RDFHandlerBase;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.QDecoderStream;
-
 import Dictionnary.Dictionnaire;
-import Dictionnary.Triplet;
 import query.Query;
 import query.QueryExecution;
 import query.QueryExecutionFactory;
@@ -39,63 +31,29 @@ public final class RDFRawParser {
 		}
 	};
 	
-	/*
-	public static HashMap<Integer,HashMap<Integer,HashSet<Integer>>> getIndex(ArrayList<Triplet> triplets, String type){
-		HashMap<Integer,HashMap<Integer,HashSet<Integer>>> indexPOS = new HashMap<Integer,HashMap<Integer,HashSet<Integer>>>();
-		boolean trv=false;
-		int T1,T2;
-		
-		for(Triplet t : triplets) {			
-			if(type.equals("POS")) {
-				T1=t.getPredicate();
-				T2=t.getObject();				
-			}
-			else {
-				T1=t.getObject();
-				T2=t.getPredicate();
-			}
-			
-			HashMap<Integer,HashSet<Integer>>  indexOS = new HashMap<Integer,HashSet<Integer>>();
-			HashSet<Integer> indexSub= new HashSet<Integer>(); ;
-			
-			if(!indexPOS.containsKey(T1)) { 	// si l'index ne contient pas le premier élement (predicat/objet) alors on lui ajoute 		
-				indexSub.add(t.getSubject());
-				indexOS.put(T2, indexSub);
-				indexPOS.put(T1, indexOS);
-				
-			}
-			else { 
-				for(Map.Entry<Integer,HashSet<Integer>> val : indexPOS.get(T1).entrySet()) {
-					if(val.getKey().equals(T2)) {
-						val.getValue().add(t.getSubject());
-						trv = true;
-						break;
-					}
-				}
-				if(!trv) {
-					indexSub.add(t.getSubject());
-					indexPOS.get(T1).put(T2, indexSub);
-					
-				}
-				trv=false;
-			}
-				
-		}	
-		return indexPOS;
-	}
-	*/
-
+	
 	//main !
 	public static void main(String args[]) throws IOException {
 		/**
 		 * Check si un nom de fichié a été ajouté en argument
 		 */
+
 		String fichierStr;
-		if(args.length != 0 ) {
+		String fichierQuery;
+		if(args.length == 2 ) {
 			fichierStr = args[0];
+			if(!fichierStr.contains(".owl")) {
+				System.err.println("Seuls les fichiers owl sont acceptés.\n"
+						+ "Voir la section Convertion de fichier dans Readme.md pour convertir vos fichiers en owl");
+				System.exit(0);
+			}
+			fichierQuery=args[1];
 		}
 		else {
-			fichierStr = "." + File.separator + "datas" + File.separator + "University0_0.owl";
+			System.out.println("Pour utiliser un autre fichier, utilisez la commande\n\t "
+					+ "\"java -jar RDFProject.jar repertoire/fichier.owl\"  repertoire/requete.txt ( l'extention n'importe pas)");
+			fichierStr = "." + File.separator + "datas" + File.separator + "500K.owl";
+			fichierQuery="." + File.separator + "queries" + File.separator + "Q1Test.queryset";
 		}
 		Reader reader = new FileReader(fichierStr);
 
@@ -115,10 +73,6 @@ public final class RDFRawParser {
 		}
 		
 		Dictionnaire dictionnaire = Dictionnaire.getInstance();
-		//System.out.println(dictionnaire.toString());
-		
-		//HashMap<Integer,HashMap<Integer,HashSet<Integer>>> IndexPOS = getIndex(dictionnaire.getTripletList(),"POS");
-		//System.out.println(IndexPOS);
 		
 		/**
 		 * Le code commenté en dessous permet l'affichage du dictionnaire et de l'index dans un fichier log.txt
@@ -144,38 +98,58 @@ public final class RDFRawParser {
 		*/
 		
 		System.out.println("Import time : " + (System.currentTimeMillis() - start));
-		/**
-		 * Creation d'une requete
+		
+		/*
+		 * Lecture des requetes
 		 */
-		String q = " PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-					 + " PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
-					 + " PREFIX owl: <http://www.w3.org/2002/07/owl#>"
-					 + " PREFIX ub: <http://swat.cse.lehigh.edu/onto/univ-bench.owl#>"
-					 + " SELECT ?x"
-					 + " WHERE {?x rdf:type ub:Subj18Student .  ?x rdf:type ub:GraduateStudent . ?x rdf:type ub:ResearchAssistant }";
-		
-		//System.out.println(q);
-		start = System.currentTimeMillis();
-		Query query = QueryFactory.create(q);
-		System.out.println("parsing time : " + (System.currentTimeMillis() - start));
-		
-		start = System.currentTimeMillis();
 
-		QueryExecution qexec = QueryExecutionFactory.create(query, dictionnaire);
+		Scanner scanner = new Scanner( new File(fichierQuery) );
+		String text = scanner.useDelimiter("\\A").next();
+		scanner.close();
+		
+		Pattern pattern = Pattern.compile("(SELECT.*?})",Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);
+		Matcher matcher = pattern.matcher(text);
+		int cpt=1;
+		Long startLoop = System.currentTimeMillis();
+		
+		if(!matcher.find()) {
+			System.err.println("Aucune requete reconnue");
+			System.exit(1);
+		}
+		while (matcher.find()) {
+			System.out.println("\nQuery "+cpt+" :");
+			start = System.currentTimeMillis();
+			
+							
+			Query query = QueryFactory.create(matcher.group(1));
+			System.out.println("parsing time : " + (System.currentTimeMillis() - start));
+			
+			start = System.currentTimeMillis();
 
-		System.out.println("Query pre-processing time : " + (System.currentTimeMillis() - start));
-		
-		/**
-		 * Partie exécution
-		 */
-		
-		
-		start = System.currentTimeMillis();
-		ResultSet rs = qexec.execSelect();
+			QueryExecution qexec = QueryExecutionFactory.create(query, dictionnaire);
 
-		System.out.println(rs);
+			System.out.println("Query pre-processing time : " + (System.currentTimeMillis() - start));
+		    
+			/**
+			 * Partie exécution
+			 */		
+			
+			start = System.currentTimeMillis();
+			ResultSet rs = qexec.execSelect();		
+			System.out.println("Query time : " + (System.currentTimeMillis() - start));
+			
+			start = System.currentTimeMillis();
+			
+			String fileResultName="./results/"+startLoop+"/Query"+cpt+".csv";
+			rs.toCSV(fileResultName);
+			System.out.println("Résults on : "+fileResultName);
+			System.out.println("Writing on file time : " + (System.currentTimeMillis() - start));
+			cpt++;
+		}
 		
-		System.out.println("Query + Display time : " + (System.currentTimeMillis() - start));
+		System.out.println("\n\nLoop time : " + (System.currentTimeMillis() - startLoop));
+		
+		
 		
 	}
 }
