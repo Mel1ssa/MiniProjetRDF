@@ -27,7 +27,7 @@ public class QueryFactory {
 		
 		variables = extractSelectVar(selectVariables);
 		conditions = extractConditions(prefixes, variables ,conditionString);
-		
+
 		Query queryObject = new Query(prefixes, variables, conditions);
 		
 		return queryObject;
@@ -76,23 +76,25 @@ public class QueryFactory {
 	private static ArrayList<Condition> extractConditions(HashMap<String, String> prefixes, ArrayList<Variable> variables, String conditionString){
 		
 		ArrayList<Condition> conditions = new ArrayList<>();
+		
 		conditionString = conditionString.replace("{", "");
 		conditionString = conditionString.replace("}", "");
 		
-		String[] tabConditions = conditionString.split("\\.");
+		String[] tabConditions = conditionString.split(" \\. ");
+
 		for(String condition : tabConditions) {
+			
+			if(condition.equals(" ") || condition.equals(""))
+				break; // cas ou il n ya pas de condition après le point
 			condition = condition.trim();
 			String[] elements = condition.split(" ");
 			if(elements.length != 3) {
 				System.err.println("Erreur : la condition n'a pas 3 elements");
 				return null;
 			}
-			
 			Value sujet = extractValue(prefixes, variables, elements[0]);
 			Value predicat = extractValue(prefixes, variables, elements[1]);
 			Value objet = extractValue(prefixes, variables, elements[2]);
-			
-						
 			
 			Condition conditionObject = new Condition( (Variable) sujet, (Uri) predicat, objet);
 			conditions.add(conditionObject);
@@ -119,10 +121,20 @@ public class QueryFactory {
 			Variable  result = new Variable(str, false);
 			variables.add(result);
 			return result;
+		case '<':
+			//cas Uri  sans prefix
+			String[] stringTabU = str.split(">:", 2);
+			if(stringTabU.length==1) {
+				String constUri = stringTabU[0].trim().replace("<", "").replace(">", "");
+				return new Uri(constUri, "");
+			}
+			String prefixeU = stringTabU[0].trim().replace("<", "").replace(">", "");
+			return new Uri(prefixeU, stringTabU[1].trim());
 		default:
-			// Cas Uri ?
+			// Cas Uri avec prefix
 			String[] stringTab = str.split(":", 2);
 			String prefixeUri = stringTab[0].trim();
+			
 			String prefixe = null;
 			if(prefixes.containsKey(prefixeUri)) {
 				prefixe = prefixes.get(prefixeUri);
