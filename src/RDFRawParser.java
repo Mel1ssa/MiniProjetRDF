@@ -121,16 +121,15 @@ public final class RDFRawParser {
 		
 		Pattern pattern = Pattern.compile("(SELECT.*?})",Pattern.CASE_INSENSITIVE | Pattern.DOTALL | Pattern.MULTILINE);
 		Matcher matcher = pattern.matcher(text);
-		int cpt=2; // ne compile pas le 1er select :/
+		int cpt=1;
 		Long startLoop = System.currentTimeMillis();
-		
 		if(!matcher.find()) {
 			System.err.println("Aucune requete reconnue");
 			System.exit(1);
 		}
-		while (matcher.find()) {
+		do {
 			start = System.currentTimeMillis();
-			Query query = QueryFactory.create(matcher.group(1));
+			Query query = QueryFactory.create(matcher.group(0));
 			time=System.currentTimeMillis() - start;
 			System.out.println   ("Query "+cpt+" -Parsing time : " + time);
 			ExecutionTimeList.add("Query "+cpt+" -Parsing time : " + time);
@@ -162,7 +161,7 @@ public final class RDFRawParser {
 			System.out.println   ("Query "+cpt+" -Writing on file time : " + time +"\n");
 			ExecutionTimeList.add("Query "+cpt+" -Writing on file time : " + time +"\n");
 			cpt++;
-		}
+		} while (matcher.find());
 		time = System.currentTimeMillis() - startLoop;
 		System.out.println("\n\nLoop time : " +time);
 		ExecutionTimeList.add("\n\nLoop time : " +time);
