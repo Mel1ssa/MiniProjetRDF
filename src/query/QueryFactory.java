@@ -87,29 +87,34 @@ public class QueryFactory {
 			if(condition.equals(" ") || condition.equals(""))
 				break; // cas ou il n ya pas de condition après le point
 			condition = condition.trim();
-			String[] elements = condition.split(" ");
-			if(elements.length != 3) {
-				System.err.println("Erreur : la condition n'a pas 3 elements");
-				return null;
+			if(!condition.equals("")) {
+				String[] elements = condition.split(" ");
+				if(elements.length != 3) {
+					System.err.println("Erreur : la condition n'a pas 3 elements");
+					return null;
+				}
+				
+				Value sujet = extractValue(prefixes, variables, elements[0]);
+				Value predicat = extractValue(prefixes, variables, elements[1]);
+				Value objet = extractValue(prefixes, variables, elements[2]);
+				
+							
+				
+				Condition conditionObject = new Condition( (Variable) sujet, (Uri) predicat, objet);
+				conditions.add(conditionObject);
 			}
-			Value sujet = extractValue(prefixes, variables, elements[0]);
-			Value predicat = extractValue(prefixes, variables, elements[1]);
-			Value objet = extractValue(prefixes, variables, elements[2]);
-			
-			Condition conditionObject = new Condition( (Variable) sujet, (Uri) predicat, objet);
-			conditions.add(conditionObject);
-		}
+}
 		
 		return conditions;
 	}
 	
 	private static Value extractValue(HashMap<String,String> prefixes, ArrayList<Variable> variables, String str) {
 		String strTrim = str.trim();
-		
+		String returnStr;
 		switch(strTrim.charAt(0)) {
 		case '"':
 			// Cas Constante
-			String returnStr = str.substring(1, str.length() - 1); 
+			returnStr = str.substring(1, str.length() - 1); 
 			return new Constant(returnStr);
 		case '?':
 			// Cas variable
@@ -130,8 +135,9 @@ public class QueryFactory {
 			}
 			String prefixeU = stringTabU[0].trim().replace("<", "").replace(">", "");
 			return new Uri(prefixeU, stringTabU[1].trim());
+		
 		default:
-			// Cas Uri avec prefix
+			// Cas Uri avec prefix			
 			String[] stringTab = str.split(":", 2);
 			String prefixeUri = stringTab[0].trim();
 			

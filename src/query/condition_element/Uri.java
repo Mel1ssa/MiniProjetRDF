@@ -8,6 +8,11 @@ public class Uri extends Variable{
 		this.prefix = pref;
 	}
 	
+	public Uri(String n) {
+		super(n, false);
+		this.prefix = "";
+	}
+	
 	@Override
 	public String getQueryName() {
 		return this.prefix + this.name;
