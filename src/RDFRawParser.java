@@ -24,12 +24,11 @@ import query.QueryFactory;
 import query.ResultSet;
 
 public final class RDFRawParser {
-
+	public static Dictionnaire dictionnaire = new Dictionnaire();
 	private static class RDFListener extends RDFHandlerBase {
 		@Override
 		public void handleStatement(Statement st) {
 
-			Dictionnaire dictionnaire = Dictionnaire.getInstance();
 			dictionnaire.add(st.getSubject().toString(), st.getPredicate().toString(), st.getObject().toString());
 
 		}
@@ -60,8 +59,8 @@ public final class RDFRawParser {
 		else {
 			System.out.println("Pour utiliser un autre fichier, utilisez la commande\n\t "
 					+ "\"java -jar RDFProject.jar repertoire/fichier.owl\"  repertoire/requete.txt ( l'extension n'importe pas)");
-			fichierStr = "." + File.separator + "datas" + File.separator + "100K.owl";
-			fichierQuery="." + File.separator + "queries" + File.separator + "Q_1_eligibleregion.queryset";
+			fichierStr = "." + File.separator + "datas" + File.separator + "500K.owl";
+			fichierQuery="." + File.separator + "queries" + File.separator + "Q_3_location_nationality_gender.queryset";
 		}
 		
 		
@@ -84,7 +83,6 @@ public final class RDFRawParser {
 		} catch (IOException e) {
 		}
 		
-		Dictionnaire dictionnaire = Dictionnaire.getInstance();
 		
 		/**
 		 * Le code commenté en dessous permet l'affichage du dictionnaire et de l'index dans un fichier log.txt

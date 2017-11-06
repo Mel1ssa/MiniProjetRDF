@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class Dictionnaire {
 
-	private static Dictionnaire instance;
+	//private static Dictionnaire instance;
 	
 	/**
 	 * Dictionnaire de mot
@@ -31,21 +31,21 @@ public class Dictionnaire {
 	private HashMap<Integer,HashMap<Integer,HashSet<Integer>>> indexPOS;
 	private HashMap<Integer,HashMap<Integer,HashSet<Integer>>> indexOPS;
 
-	private Dictionnaire() {
+	public Dictionnaire() {
 		wordList = new HashMap<String, Integer>();
 		indexList = new ArrayList<String>();
 		tripletList = new ArrayList<>();
 		indexPOS = new HashMap<Integer,HashMap<Integer,HashSet<Integer>>>();
 		indexOPS = new HashMap<Integer,HashMap<Integer,HashSet<Integer>>>();
 	}
-
+	/*
 	public static Dictionnaire getInstance() {
 		if (instance == null) {
 			instance = new Dictionnaire();
 		}
 		return instance;
 	}
-
+	*/
 	public Integer has(String word) {
 		return wordList.get(word);
 	}
@@ -83,7 +83,7 @@ public class Dictionnaire {
 		tripletList.add(triplet);
 		
 		// Ici on s'occupe des index
-		addIndex(indexPOS, triplet, predicateIndex, objectIndex);
+		//addIndex(indexPOS, triplet, predicateIndex, objectIndex);
 		addIndex(indexOPS, triplet, objectIndex, predicateIndex);
 	}
 	
