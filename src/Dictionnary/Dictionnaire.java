@@ -75,11 +75,11 @@ public class Dictionnaire {
 	
 	
 	public void add(String subject, String predicate, String object) {
-		Triplet triplet = new Triplet();
-		int subjectIndex = triplet.subject = add(subject);
-		int predicateIndex =triplet.predicate = add(predicate);
-		int objectIndex =triplet.object = add(object);
-
+		
+		int subjectIndex = add(subject);
+		int predicateIndex = add(predicate);
+		int objectIndex = add(object);
+		Triplet triplet = new Triplet(subjectIndex, predicateIndex, objectIndex);
 		tripletList.add(triplet);
 		
 		// Ici on s'occupe des index
