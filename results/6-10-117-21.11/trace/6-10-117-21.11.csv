@@ -1,0 +1,504 @@
+Import time : 8436
+Query 1 -Parsing time : 10
+Query 1 -Pre-processing time : 5
+Query 1 -Exec query time : 1
+Query 1 -Writing on file time : 271
+
+Query 2 -Parsing time : 2
+Query 2 -Pre-processing time : 0
+Query 2 -Exec query time : 0
+Query 2 -Writing on file time : 0
+
+Query 3 -Parsing time : 1
+Query 3 -Pre-processing time : 0
+Query 3 -Exec query time : 0
+Query 3 -Writing on file time : 0
+
+Query 4 -Parsing time : 1
+Query 4 -Pre-processing time : 0
+Query 4 -Exec query time : 0
+Query 4 -Writing on file time : 7
+
+Query 5 -Parsing time : 1
+Query 5 -Pre-processing time : 0
+Query 5 -Exec query time : 0
+Query 5 -Writing on file time : 0
+
+Query 6 -Parsing time : 1
+Query 6 -Pre-processing time : 0
+Query 6 -Exec query time : 0
+Query 6 -Writing on file time : 0
+
+Query 7 -Parsing time : 1
+Query 7 -Pre-processing time : 0
+Query 7 -Exec query time : 0
+Query 7 -Writing on file time : 0
+
+Query 8 -Parsing time : 1
+Query 8 -Pre-processing time : 0
+Query 8 -Exec query time : 0
+Query 8 -Writing on file time : 12
+
+Query 9 -Parsing time : 1
+Query 9 -Pre-processing time : 1
+Query 9 -Exec query time : 0
+Query 9 -Writing on file time : 0
+
+Query 10 -Parsing time : 1
+Query 10 -Pre-processing time : 0
+Query 10 -Exec query time : 0
+Query 10 -Writing on file time : 0
+
+Query 11 -Parsing time : 0
+Query 11 -Pre-processing time : 0
+Query 11 -Exec query time : 0
+Query 11 -Writing on file time : 0
+
+Query 12 -Parsing time : 1
+Query 12 -Pre-processing time : 1
+Query 12 -Exec query time : 0
+Query 12 -Writing on file time : 0
+
+Query 13 -Parsing time : 6
+Query 13 -Pre-processing time : 1
+Query 13 -Exec query time : 0
+Query 13 -Writing on file time : 0
+
+Query 14 -Parsing time : 1
+Query 14 -Pre-processing time : 1
+Query 14 -Exec query time : 0
+Query 14 -Writing on file time : 0
+
+Query 15 -Parsing time : 1
+Query 15 -Pre-processing time : 0
+Query 15 -Exec query time : 0
+Query 15 -Writing on file time : 0
+
+Query 16 -Parsing time : 1
+Query 16 -Pre-processing time : 0
+Query 16 -Exec query time : 0
+Query 16 -Writing on file time : 1
+
+Query 17 -Parsing time : 0
+Query 17 -Pre-processing time : 0
+Query 17 -Exec query time : 0
+Query 17 -Writing on file time : 1
+
+Query 18 -Parsing time : 1
+Query 18 -Pre-processing time : 1
+Query 18 -Exec query time : 0
+Query 18 -Writing on file time : 0
+
+Query 19 -Parsing time : 1
+Query 19 -Pre-processing time : 1
+Query 19 -Exec query time : 0
+Query 19 -Writing on file time : 0
+
+Query 20 -Parsing time : 1
+Query 20 -Pre-processing time : 0
+Query 20 -Exec query time : 0
+Query 20 -Writing on file time : 0
+
+Query 21 -Parsing time : 1
+Query 21 -Pre-processing time : 0
+Query 21 -Exec query time : 0
+Query 21 -Writing on file time : 1
+
+Query 22 -Parsing time : 1
+Query 22 -Pre-processing time : 0
+Query 22 -Exec query time : 0
+Query 22 -Writing on file time : 0
+
+Query 23 -Parsing time : 1
+Query 23 -Pre-processing time : 0
+Query 23 -Exec query time : 0
+Query 23 -Writing on file time : 1
+
+Query 24 -Parsing time : 1
+Query 24 -Pre-processing time : 0
+Query 24 -Exec query time : 0
+Query 24 -Writing on file time : 0
+
+Query 25 -Parsing time : 6
+Query 25 -Pre-processing time : 0
+Query 25 -Exec query time : 0
+Query 25 -Writing on file time : 1
+
+Query 26 -Parsing time : 1
+Query 26 -Pre-processing time : 0
+Query 26 -Exec query time : 0
+Query 26 -Writing on file time : 0
+
+Query 27 -Parsing time : 1
+Query 27 -Pre-processing time : 0
+Query 27 -Exec query time : 1
+Query 27 -Writing on file time : 0
+
+Query 28 -Parsing time : 1
+Query 28 -Pre-processing time : 0
+Query 28 -Exec query time : 0
+Query 28 -Writing on file time : 1
+
+Query 29 -Parsing time : 15
+Query 29 -Pre-processing time : 0
+Query 29 -Exec query time : 0
+Query 29 -Writing on file time : 1
+
+Query 30 -Parsing time : 0
+Query 30 -Pre-processing time : 0
+Query 30 -Exec query time : 0
+Query 30 -Writing on file time : 0
+
+Query 31 -Parsing time : 1
+Query 31 -Pre-processing time : 0
+Query 31 -Exec query time : 0
+Query 31 -Writing on file time : 0
+
+Query 32 -Parsing time : 1
+Query 32 -Pre-processing time : 0
+Query 32 -Exec query time : 0
+Query 32 -Writing on file time : 1
+
+Query 33 -Parsing time : 0
+Query 33 -Pre-processing time : 0
+Query 33 -Exec query time : 0
+Query 33 -Writing on file time : 1
+
+Query 34 -Parsing time : 1
+Query 34 -Pre-processing time : 1
+Query 34 -Exec query time : 0
+Query 34 -Writing on file time : 0
+
+Query 35 -Parsing time : 1
+Query 35 -Pre-processing time : 0
+Query 35 -Exec query time : 0
+Query 35 -Writing on file time : 0
+
+Query 36 -Parsing time : 1
+Query 36 -Pre-processing time : 0
+Query 36 -Exec query time : 0
+Query 36 -Writing on file time : 0
+
+Query 37 -Parsing time : 1
+Query 37 -Pre-processing time : 0
+Query 37 -Exec query time : 0
+Query 37 -Writing on file time : 0
+
+Query 38 -Parsing time : 1
+Query 38 -Pre-processing time : 0
+Query 38 -Exec query time : 0
+Query 38 -Writing on file time : 0
+
+Query 39 -Parsing time : 1
+Query 39 -Pre-processing time : 0
+Query 39 -Exec query time : 0
+Query 39 -Writing on file time : 1
+
+Query 40 -Parsing time : 1
+Query 40 -Pre-processing time : 0
+Query 40 -Exec query time : 0
+Query 40 -Writing on file time : 0
+
+Query 41 -Parsing time : 1
+Query 41 -Pre-processing time : 0
+Query 41 -Exec query time : 0
+Query 41 -Writing on file time : 1
+
+Query 42 -Parsing time : 1
+Query 42 -Pre-processing time : 0
+Query 42 -Exec query time : 0
+Query 42 -Writing on file time : 0
+
+Query 43 -Parsing time : 3
+Query 43 -Pre-processing time : 0
+Query 43 -Exec query time : 0
+Query 43 -Writing on file time : 0
+
+Query 44 -Parsing time : 1
+Query 44 -Pre-processing time : 1
+Query 44 -Exec query time : 0
+Query 44 -Writing on file time : 0
+
+Query 45 -Parsing time : 0
+Query 45 -Pre-processing time : 0
+Query 45 -Exec query time : 0
+Query 45 -Writing on file time : 9
+
+Query 46 -Parsing time : 1
+Query 46 -Pre-processing time : 0
+Query 46 -Exec query time : 0
+Query 46 -Writing on file time : 0
+
+Query 47 -Parsing time : 0
+Query 47 -Pre-processing time : 0
+Query 47 -Exec query time : 1
+Query 47 -Writing on file time : 3
+
+Query 48 -Parsing time : 1
+Query 48 -Pre-processing time : 0
+Query 48 -Exec query time : 0
+Query 48 -Writing on file time : 1
+
+Query 49 -Parsing time : 0
+Query 49 -Pre-processing time : 0
+Query 49 -Exec query time : 0
+Query 49 -Writing on file time : 0
+
+Query 50 -Parsing time : 0
+Query 50 -Pre-processing time : 1
+Query 50 -Exec query time : 0
+Query 50 -Writing on file time : 0
+
+Query 51 -Parsing time : 0
+Query 51 -Pre-processing time : 0
+Query 51 -Exec query time : 0
+Query 51 -Writing on file time : 0
+
+Query 52 -Parsing time : 5
+Query 52 -Pre-processing time : 0
+Query 52 -Exec query time : 0
+Query 52 -Writing on file time : 1
+
+Query 53 -Parsing time : 1
+Query 53 -Pre-processing time : 0
+Query 53 -Exec query time : 0
+Query 53 -Writing on file time : 0
+
+Query 54 -Parsing time : 1
+Query 54 -Pre-processing time : 0
+Query 54 -Exec query time : 0
+Query 54 -Writing on file time : 1
+
+Query 55 -Parsing time : 1
+Query 55 -Pre-processing time : 0
+Query 55 -Exec query time : 0
+Query 55 -Writing on file time : 0
+
+Query 56 -Parsing time : 0
+Query 56 -Pre-processing time : 0
+Query 56 -Exec query time : 0
+Query 56 -Writing on file time : 0
+
+Query 57 -Parsing time : 0
+Query 57 -Pre-processing time : 0
+Query 57 -Exec query time : 0
+Query 57 -Writing on file time : 1
+
+Query 58 -Parsing time : 1
+Query 58 -Pre-processing time : 0
+Query 58 -Exec query time : 0
+Query 58 -Writing on file time : 0
+
+Query 59 -Parsing time : 0
+Query 59 -Pre-processing time : 0
+Query 59 -Exec query time : 0
+Query 59 -Writing on file time : 1
+
+Query 60 -Parsing time : 0
+Query 60 -Pre-processing time : 0
+Query 60 -Exec query time : 0
+Query 60 -Writing on file time : 1
+
+Query 61 -Parsing time : 1
+Query 61 -Pre-processing time : 0
+Query 61 -Exec query time : 0
+Query 61 -Writing on file time : 0
+
+Query 62 -Parsing time : 1
+Query 62 -Pre-processing time : 0
+Query 62 -Exec query time : 0
+Query 62 -Writing on file time : 1
+
+Query 63 -Parsing time : 0
+Query 63 -Pre-processing time : 0
+Query 63 -Exec query time : 0
+Query 63 -Writing on file time : 0
+
+Query 64 -Parsing time : 1
+Query 64 -Pre-processing time : 0
+Query 64 -Exec query time : 0
+Query 64 -Writing on file time : 0
+
+Query 65 -Parsing time : 1
+Query 65 -Pre-processing time : 0
+Query 65 -Exec query time : 0
+Query 65 -Writing on file time : 0
+
+Query 66 -Parsing time : 1
+Query 66 -Pre-processing time : 0
+Query 66 -Exec query time : 0
+Query 66 -Writing on file time : 1
+
+Query 67 -Parsing time : 0
+Query 67 -Pre-processing time : 0
+Query 67 -Exec query time : 0
+Query 67 -Writing on file time : 0
+
+Query 68 -Parsing time : 0
+Query 68 -Pre-processing time : 0
+Query 68 -Exec query time : 0
+Query 68 -Writing on file time : 0
+
+Query 69 -Parsing time : 0
+Query 69 -Pre-processing time : 0
+Query 69 -Exec query time : 0
+Query 69 -Writing on file time : 0
+
+Query 70 -Parsing time : 0
+Query 70 -Pre-processing time : 0
+Query 70 -Exec query time : 0
+Query 70 -Writing on file time : 0
+
+Query 71 -Parsing time : 1
+Query 71 -Pre-processing time : 0
+Query 71 -Exec query time : 0
+Query 71 -Writing on file time : 1
+
+Query 72 -Parsing time : 0
+Query 72 -Pre-processing time : 0
+Query 72 -Exec query time : 0
+Query 72 -Writing on file time : 0
+
+Query 73 -Parsing time : 0
+Query 73 -Pre-processing time : 0
+Query 73 -Exec query time : 0
+Query 73 -Writing on file time : 0
+
+Query 74 -Parsing time : 0
+Query 74 -Pre-processing time : 0
+Query 74 -Exec query time : 0
+Query 74 -Writing on file time : 1
+
+Query 75 -Parsing time : 1
+Query 75 -Pre-processing time : 0
+Query 75 -Exec query time : 0
+Query 75 -Writing on file time : 0
+
+Query 76 -Parsing time : 1
+Query 76 -Pre-processing time : 0
+Query 76 -Exec query time : 0
+Query 76 -Writing on file time : 1
+
+Query 77 -Parsing time : 1
+Query 77 -Pre-processing time : 0
+Query 77 -Exec query time : 0
+Query 77 -Writing on file time : 0
+
+Query 78 -Parsing time : 0
+Query 78 -Pre-processing time : 0
+Query 78 -Exec query time : 0
+Query 78 -Writing on file time : 0
+
+Query 79 -Parsing time : 0
+Query 79 -Pre-processing time : 0
+Query 79 -Exec query time : 0
+Query 79 -Writing on file time : 0
+
+Query 80 -Parsing time : 1
+Query 80 -Pre-processing time : 0
+Query 80 -Exec query time : 0
+Query 80 -Writing on file time : 0
+
+Query 81 -Parsing time : 0
+Query 81 -Pre-processing time : 1
+Query 81 -Exec query time : 0
+Query 81 -Writing on file time : 0
+
+Query 82 -Parsing time : 0
+Query 82 -Pre-processing time : 0
+Query 82 -Exec query time : 0
+Query 82 -Writing on file time : 1
+
+Query 83 -Parsing time : 0
+Query 83 -Pre-processing time : 0
+Query 83 -Exec query time : 0
+Query 83 -Writing on file time : 0
+
+Query 84 -Parsing time : 0
+Query 84 -Pre-processing time : 0
+Query 84 -Exec query time : 0
+Query 84 -Writing on file time : 0
+
+Query 85 -Parsing time : 1
+Query 85 -Pre-processing time : 0
+Query 85 -Exec query time : 1
+Query 85 -Writing on file time : 0
+
+Query 86 -Parsing time : 0
+Query 86 -Pre-processing time : 0
+Query 86 -Exec query time : 0
+Query 86 -Writing on file time : 0
+
+Query 87 -Parsing time : 0
+Query 87 -Pre-processing time : 0
+Query 87 -Exec query time : 0
+Query 87 -Writing on file time : 1
+
+Query 88 -Parsing time : 0
+Query 88 -Pre-processing time : 1
+Query 88 -Exec query time : 0
+Query 88 -Writing on file time : 0
+
+Query 89 -Parsing time : 0
+Query 89 -Pre-processing time : 0
+Query 89 -Exec query time : 0
+Query 89 -Writing on file time : 0
+
+Query 90 -Parsing time : 1
+Query 90 -Pre-processing time : 0
+Query 90 -Exec query time : 0
+Query 90 -Writing on file time : 0
+
+Query 91 -Parsing time : 1
+Query 91 -Pre-processing time : 0
+Query 91 -Exec query time : 0
+Query 91 -Writing on file time : 1
+
+Query 92 -Parsing time : 0
+Query 92 -Pre-processing time : 0
+Query 92 -Exec query time : 0
+Query 92 -Writing on file time : 0
+
+Query 93 -Parsing time : 1
+Query 93 -Pre-processing time : 0
+Query 93 -Exec query time : 0
+Query 93 -Writing on file time : 1
+
+Query 94 -Parsing time : 0
+Query 94 -Pre-processing time : 0
+Query 94 -Exec query time : 0
+Query 94 -Writing on file time : 0
+
+Query 95 -Parsing time : 0
+Query 95 -Pre-processing time : 0
+Query 95 -Exec query time : 0
+Query 95 -Writing on file time : 1
+
+Query 96 -Parsing time : 1
+Query 96 -Pre-processing time : 0
+Query 96 -Exec query time : 0
+Query 96 -Writing on file time : 0
+
+Query 97 -Parsing time : 1
+Query 97 -Pre-processing time : 0
+Query 97 -Exec query time : 0
+Query 97 -Writing on file time : 0
+
+Query 98 -Parsing time : 1
+Query 98 -Pre-processing time : 0
+Query 98 -Exec query time : 0
+Query 98 -Writing on file time : 1
+
+Query 99 -Parsing time : 0
+Query 99 -Pre-processing time : 1
+Query 99 -Exec query time : 0
+Query 99 -Writing on file time : 0
+
+Query 100 -Parsing time : 1
+Query 100 -Pre-processing time : 1
+Query 100 -Exec query time : 0
+Query 100 -Writing on file time : 0
+
+
+
+Loop time : 532
