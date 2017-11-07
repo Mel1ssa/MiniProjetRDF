@@ -31,7 +31,6 @@ public class QueryExecution {
 		HashSet<Integer> results = new HashSet<>(index.get(firstCondition.getObject()).get(firstCondition.getPredicate()));
 		ConditionInteger secondCondition;
 		HashSet<Integer> resultsBis;
-		System.out.println("condition : " + conditionsInt.size());
 		for(int i = 1; i<conditionsInt.size();i++) {
 			secondCondition = conditionsInt.get(i);
 			resultsBis = index.get(secondCondition.getObject()).get(secondCondition.getPredicate());
