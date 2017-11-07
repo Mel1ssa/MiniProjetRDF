@@ -28,7 +28,7 @@ public class QueryExecution {
 		if(firstCondition.getSizeRequest() == 0){
 			return new ResultSet(new ArrayList<>());
 		}
-		HashSet<Integer> results = index.get(firstCondition.getObject()).get(firstCondition.getPredicate());
+		HashSet<Integer> results = new HashSet<>(index.get(firstCondition.getObject()).get(firstCondition.getPredicate()));
 		ConditionInteger secondCondition;
 		HashSet<Integer> resultsBis;
 		System.out.println("condition : " + conditionsInt.size());
