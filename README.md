@@ -27,4 +27,4 @@ Certains fichiers rdf sont en réalité des fichier nt (c'est le cas des fichier
 	Pour les convertir, il faudra renommer l'extention en nt puis utiliser la commande ci dessus.
 
 ## Dépot Github ##
-	[https://github.com/Mel1ssa/MiniProjetRDF/edit/optiExecV2/README.md]
+	[https://github.com/Mel1ssa/MiniProjetRDF.git]
