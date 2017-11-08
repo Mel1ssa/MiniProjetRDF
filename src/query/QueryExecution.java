@@ -28,21 +28,13 @@ public class QueryExecution {
 		if(firstCondition.getSizeRequest() == 0){
 			return new ResultSet(new ArrayList<>());
 		}
-		HashSet<Integer> results = index.get(firstCondition.getObject()).get(firstCondition.getPredicate());
+		HashSet<Integer> results = new HashSet<>(index.get(firstCondition.getObject()).get(firstCondition.getPredicate()));
 		ConditionInteger secondCondition;
 		HashSet<Integer> resultsBis;
 		for(int i = 1; i<conditionsInt.size();i++) {
 			secondCondition = conditionsInt.get(i);
 			resultsBis = index.get(secondCondition.getObject()).get(secondCondition.getPredicate());
-			HashSet<Integer> actualResult = new HashSet<>();
-			for(Integer int1 : results) {
-				for(Integer int2 : resultsBis) {
-					if(int1.equals(int2)) {
-						actualResult.add(int1);
-					}
-				}
-			}
-			results = actualResult;
+			boolean a = results.retainAll(resultsBis);
 		}
 		ArrayList<String> resultats = new ArrayList<>();
 		for(Integer resultInt : results) {

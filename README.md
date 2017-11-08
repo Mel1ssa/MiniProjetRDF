@@ -26,3 +26,5 @@ Afin de convertir vos fichier nt,ttl,n3trig... en owl il suffit d'exécuter la c
 Certains fichiers rdf sont en réalité des fichier nt (c'est le cas des fichiers 100K et 500K de ce projet)
 	Pour les convertir, il faudra renommer l'extention en nt puis utiliser la commande ci dessus.
 
+## [Dépot Github](https://github.com/Mel1ssa/MiniProjetRDF.git) ##
+	
