@@ -38,7 +38,8 @@ public final class RDFRawParser {
 	//main !
 	public static void main(String args[]) throws IOException {
 		Date d = new Date();
-		String dateStrDetail= d.getDate()+"-"+d.getMonth()+"-"+d.getYear()+"-"+d.getHours()+"."+d.getMinutes(); 
+		@SuppressWarnings("deprecation")
+		String dateStrDetail= d.getDate()+"-"+d.getMonth()+"-"+d.getYear()+"-"+d.getHours()+"."+d.getMinutes()+"."+d.getSeconds(); 
 		
 		/**
 		 * Check si un nom de fichié a été ajouté en argument
@@ -57,10 +58,13 @@ public final class RDFRawParser {
 			fichierQuery=args[1];
 		}
 		else {
-			System.out.println("Pour utiliser un autre fichier, utilisez la commande\n\t "
-					+ "\"java -jar RDFProject.jar repertoire/fichier.owl\"  repertoire/requete.txt ( l'extension n'importe pas)");
+			System.out.println("La commande exacte est\n\t "
+					+ "\"java -jar RDFProject.jar repertoire/fichier.owl\"  repertoire/requete.txt ( l'extension n'importe pas)"
+					+ "\n Sans ça les fichiers 500K.owl et Q_1_eligibleregion.queryset seront utilisés\n\t\t****\n\n");
+		
 			fichierStr = "." + File.separator + "datas" + File.separator + "500K.owl";
-			fichierQuery="." + File.separator + "queries" + File.separator + "Q_3_location_nationality_gender.queryset";
+			fichierQuery="." + File.separator + "queries" + File.separator + "Q_1_eligibleregion.queryset";
+		
 		}
 		
 		
@@ -154,7 +158,7 @@ public final class RDFRawParser {
 			
 			String fileResultName="." + File.separator +"results"+ File.separator + dateStrDetail + File.separator +"Query" + cpt + ".csv";
 			rs.toCSV(fileResultName);
-			System.out.println("Résults on : "+fileResultName);
+			//System.out.println("Résults on : "+fileResultName);
 			time=System.currentTimeMillis() - start;
 			System.out.println   ("Query "+cpt+" -Writing on file time : " + time +"\n");
 			ExecutionTimeList.add("Query "+cpt+" -Writing on file time : " + time +"\n");
@@ -165,6 +169,8 @@ public final class RDFRawParser {
 		ExecutionTimeList.add("\n\nLoop time : " +time);
 		
 		String fichierExecTrace= "." + File.separator + "results" + File.separator + dateStrDetail + File.separator +"trace" + File.separator + dateStrDetail+".csv" ;
+		String queryFile ="." + File.separator + "results" + File.separator + dateStrDetail;
+		System.out.println("Les résultats des requetes se trouvent dans le fichier : "+queryFile);
 		System.out.println("Les traces d'executions se trouvent dans le fichier : "+fichierExecTrace);
 		writetoCSV(ExecutionTimeList,fichierExecTrace);
 	}

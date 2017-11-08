@@ -1,8 +1,5 @@
 package Dictionnary;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -93,12 +90,13 @@ public class Dictionnaire {
 	}
 	
 	/**
-	 * Marche que pour OPS et POS
+	 * Marche que pour OPS et POS -> n'est plus utilisée !
 	 * @param index
 	 * @param t
 	 * @param T1
 	 * @param T2
 	 */
+	@SuppressWarnings("unused")
 	private void addIndex(HashMap<Integer ,HashMap<Integer, HashSet<Integer>>> index,Triplet t, int T1, int T2) {
 		
 		HashMap<Integer, HashSet<Integer>>  indexOS = new HashMap<Integer,HashSet<Integer>>();
