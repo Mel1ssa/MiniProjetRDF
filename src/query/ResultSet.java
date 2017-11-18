@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ResultSet {
@@ -14,11 +16,16 @@ public class ResultSet {
 	}
 	
 	public String toString() {
-		String str = resultats.size() + " résultats obtenu :";
-		for(String strResult : resultats) {
-			str += "\n" + strResult;
+		
+		List<String> subList = resultats.subList(0, resultats.size());
+		Collections.sort(subList);
+		
+		StringBuilder str = new StringBuilder("Nb results :" + resultats.size());
+		for(String strResult : subList) {
+			str.append("\n");
+			str.append(strResult);
 		}
-		return str;
+		return str.toString();
 	}
 	
 	public void toCSV(String filename) throws IOException {

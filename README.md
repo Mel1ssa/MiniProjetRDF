@@ -5,6 +5,7 @@
 - Le dossier datas/ contenant 3 fichiers owl
 - Le dossier queries/ contenant les 13 fichiers de requêtes
 - Le dossier results/ contenant les résultats de l'exécution
+
 # Execution du jar #
 
 	java -jar RDFProject.jar repertoire/fichier.owl repertoir/fichier.queryset
@@ -15,7 +16,20 @@
 - L'extension du fichier de requetes n'importe pas (tant que c'est du text)
 - Les résultats de l'exécution se trouvent dans le fichier date-heure-de-l'execution/QueryNumerodeRequete.csv pour les résultats des requêtes et dans trace/ pour les traces d'executions
 - Si la requête ne donne aucun résultat alors le fichier QueryNumerodeRequete.csv n'est pas crée 
-	
+
+# Comparaison des résultat ProjetRDF vs Jena #
+Pour comparer les résultats de notre Moteur avec "l'oracle" Jena, il y a un fichier .jar qui se lance de la même manière que le notre Moteur de requêtes. Soit :
+```sh
+java -jar JenaProject.jar repertoire/fichier.owl repertoir/fichier.queryset
+java -jar JenaProject.jar repertoire/fichier.owl repertoir/fichier.queryset
+```
+
+Les résultats de l'exécution se situent dans un fichier *Query.csv*. Pour Jena, les résultats sont dans *resultsJena* et pour notre projet dans *results*. 
+
+Pour comparer, il suffit de faire :
+```
+diff -s resultsJena/repertoire/Query.csv results/repertoire/Query.csv
+```
 
 # Convertion de fichier #
 Afin de convertir vos fichier nt,ttl,n3trig... en owl il suffit d'exécuter la commande suivante :
@@ -27,4 +41,3 @@ Certains fichiers rdf sont en réalité des fichier nt (c'est le cas des fichier
 	Pour les convertir, il faudra renommer l'extention en nt puis utiliser la commande ci dessus.
 
 ## [Dépot Github](https://github.com/Mel1ssa/MiniProjetRDF.git) ##
-	

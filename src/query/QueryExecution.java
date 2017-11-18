@@ -34,7 +34,7 @@ public class QueryExecution {
 		for(int i = 1; i<conditionsInt.size();i++) {
 			secondCondition = conditionsInt.get(i);
 			resultsBis = index.get(secondCondition.getObject()).get(secondCondition.getPredicate());
-			boolean a = results.retainAll(resultsBis);
+			results.retainAll(resultsBis);
 		}
 		ArrayList<String> resultats = new ArrayList<>();
 		for(Integer resultInt : results) {
