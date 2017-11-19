@@ -126,6 +126,7 @@ public final class RDFRawParser {
 		Matcher matcher = pattern.matcher(text);
 		ArrayList<ResultSet> listResult = new ArrayList<>();
 		int cpt=1;
+		long cptLoop = 0;
 		Long startLoop = System.currentTimeMillis();
 		if(!matcher.find()) {
 			System.err.println("Aucune requete reconnue");
@@ -151,7 +152,11 @@ public final class RDFRawParser {
 			
 			ResultSet rs = qexec.execSelect();	
 			time=System.currentTimeMillis() - start;
-			ExecutionTimeList.add("Query "+cpt+" -Exec query time : " + time);
+			if(time == 0) {
+				time = (long) 1;
+			}
+			cptLoop += time;
+			ExecutionTimeList.add("Query "+cpt+" -Exec query time : " + time + "\n");
 			
 			//String fileResultName="." + File.separator +"results"+ File.separator + dateStrDetail + File.separator +"Query" + cpt + ".csv";
 			//rs.toCSV(fileResultName);
@@ -160,9 +165,8 @@ public final class RDFRawParser {
 			cpt++;
 			
 		} while (matcher.find());
-		time = System.currentTimeMillis() - startLoop;
-		System.out.println("Loop time : " +time);
-		ExecutionTimeList.add("\n\nLoop time : " +time);
+		System.out.println("Loop time : " +cptLoop);
+		ExecutionTimeList.add("\n\nLoop time : " +cptLoop);
 		
 		String fichierExecTrace= "." + File.separator + "results" + File.separator + dateStrDetail + File.separator +"trace" + File.separator + dateStrDetail+".csv" ;
 		String queryFile = "." + File.separator + "results" + File.separator + dateStrDetail;
